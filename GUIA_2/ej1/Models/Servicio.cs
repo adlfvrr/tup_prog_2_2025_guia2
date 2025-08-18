@@ -56,9 +56,16 @@ namespace ej1.Models
                 }
                 cont++;
             }
-            personas[idx] = personas[cantidadPersonas];
-            cantidadPersonas--;
-            for(int i = 0; i < cantidadPersonas - 1; i++)
+            if (idx == -1)
+            {
+                return;
+            }
+            else
+            {
+                personas[idx] = personas[cantidadPersonas - 1];
+                cantidadPersonas--;
+            }
+            /*for(int i = 0; i < cantidadPersonas - 1; i++)
             {
                /* for(int j = i + 1; j < cantidadPersonas; j++)
                 {
@@ -72,5 +79,4 @@ namespace ej1.Models
             }
         }
     }
-}
 

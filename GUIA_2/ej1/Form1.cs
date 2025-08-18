@@ -12,6 +12,11 @@ namespace ej1
         Servicio servicio = new Servicio();
         private void btnListar_Click(object sender, EventArgs e)
         {
+            lsbListar.Items.Clear();
+            for(int i = 0; i < servicio.VerCantidadPersonas(); i++)
+            {
+                lsbListar.Items.Add(servicio.VerPersona(i).Describir());
+            }
             lsbListar.Show();
         }
 
@@ -21,11 +26,7 @@ namespace ej1
             if (modalPersona.ShowDialog() == DialogResult.OK)
             {
                 nuevaPersona = new Persona(Convert.ToInt32(modalPersona.tbDNI.Text), modalPersona.tbNombre.Text);
-                if (servicio.AgregarPersona(nuevaPersona) != false)
-                {
-                    lsbListar.Items.Add(nuevaPersona.Describir());
-                }
-                else
+                if (servicio.AgregarPersona(nuevaPersona) == false)
                 {
                     MessageBox.Show("DNI ya existente");
                 }
@@ -51,7 +52,7 @@ namespace ej1
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
